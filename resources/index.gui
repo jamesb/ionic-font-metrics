@@ -1,0 +1,7 @@
+<svg viewport-fill="#404040">
+  <g transform="scale(4)">
+    <text id="lblSubject" x="0" y="30" pointer-events="visible"/>
+    <image id="imgRuler" x="0" y="0" width="408" height="50" href="400px_ruler_grayscale_tall.png" pointer-events="visible"/>
+  </g>
+  <text id="lblWidth" x="98%" y="98%"/>
+</svg>

@@ -1,0 +1,22 @@
+#lblSubject {
+  font-size: 40;
+  font-family: Colfax-Regular;
+  font-weight: regular;
+  fill: #FFFFFF;
+  text-length: 32;
+  text-anchor: start;
+}
+
+#imgRuler {
+  fill: #FF0000;
+  opacity: 1;
+}
+
+#lblWidth {
+  font-size: 30;
+  font-family: System-Regular;
+  font-weight: regular;
+  fill: #FFFFFF;
+  text-length: 4;
+  text-anchor: end;
+}
