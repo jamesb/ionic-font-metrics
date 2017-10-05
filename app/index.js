@@ -37,8 +37,8 @@ var lblSubject = document.getElementById("lblSubject")
 var imgRuler = document.getElementById("imgRuler")
 var lblWidth = document.getElementById("lblWidth")
 
-var cycleChar = '~';
-lblSubject.innerText = cycleChar
+var cycleChar = '!';
+lblSubject.innerText = ":)"
 
 let px = 0
 try { px = fm.px_width(lblSubject) }
