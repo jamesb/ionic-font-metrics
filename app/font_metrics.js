@@ -28,6 +28,7 @@ export function px_width(text_element) {
   let ff = text_element.style.fontFamily
   let fs = text_element.style.fontSize
   let fw = text_element.style.fontWeight
+  let fs_scale = 1
   
   ff = ff.toLowerCase()
   if ( !(ff in metrics) ) {
@@ -35,9 +36,14 @@ export function px_width(text_element) {
   }
 
   if ( !(fs in metrics[ff]) ) {
-    // What font sizes do we have?
-    // Use a linear scale to calculate widths based a known size.
-    throw Error(describe_font(ff, fs, fw) + ": Unexpected font size")
+    // What is the largest font size we have measured?
+    let largest = 0
+    for(var key in metrics[ff]) {
+      if ((key == parseInt(key, 10)) && (key > largest)) largest = key
+    }
+    // Use a linear scale to calculate widths based on this known size.
+    fs_scale = (fs/largest)
+    fs = largest
   }
     
   // This is the only font weight that seems to be recognized (at least, for the Colfax font families)
@@ -57,14 +63,14 @@ export function px_width(text_element) {
     if ( !(ch in metrics[ff][fs][fw]) ) {
       let widthSum = 0
       for(var key in metrics[ff][fs][fw]) {
-        widthSum += metrics[ff][fs][fw][key]
+        if (key.length == 1) widthSum += metrics[ff][fs][fw][key]
       }
       chWidth = Math.round(widthSum / Object.keys(metrics[ff][fs][fw]).length)
     } else {
       chWidth = metrics[ff][fs][fw][ch]
     }
-    txtWidth += chWidth + default_kern
+    txtWidth += (chWidth + default_kern) * fs_scale
   }
-  if (txtWidth > default_kern) txtWidth -= default_kern
+  if (txtWidth > default_kern) txtWidth -= (default_kern * fs_scale)
   return txtWidth
 }
