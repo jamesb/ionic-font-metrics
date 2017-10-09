@@ -1,6 +1,6 @@
 import document from "document"
 import { display } from "display"
-import * as fm from "../common/font_metrics"
+import * as fm from "./font_metrics"
 
 const CHAR_SET = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
 
