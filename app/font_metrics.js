@@ -24,7 +24,7 @@ export function px_width(text_element) {
     }
   }
 
-  let tx = text_element.innerText
+  let tx = text_element.text
   let ff = text_element.style.fontFamily
   let fs = text_element.style.fontSize
   let fw = text_element.style.fontWeight
