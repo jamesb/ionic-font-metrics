@@ -1,15 +1,15 @@
-export function describe_font(font_family, font_size, font_weight) {
-  return `${font_family}-${font_size}-${font_weight}`
+export function describeFont(fontFamily, fontSize, fontWeight) {
+  return `${fontFamily}-${fontSize}-${fontWeight}`
 }
 
 
 // Approximates the pixel width of a string. Not perfect, but it gets in the ballpark.
-export function px_width(text_element) {
+export function pxWidth(textElement) {
   let metrics = {
     "colfax-regular": {
       40: {
         'regular': {
-          'default_kern':4,
+          'defaultKern':4,
           ' ':10, '!':6,  '"':14, '#':24, '$':21, '%':31, '&':26, '\'':15, '(':10, ')':9,  '*':14, '+':21, ',':6,  '-':13, '.':6,  '/':14, 
           '0':22, '1':10, '2':20, '3':21, '4':21, '5':22, '6':21, '7':19, '8':21, '9':21,
           ':':6,  ';':6,  '<':19, '=':21, '>':21, '?':17, '@':35,
@@ -24,15 +24,15 @@ export function px_width(text_element) {
     }
   }
 
-  let tx = text_element.text
-  let ff = text_element.style.fontFamily
-  let fs = text_element.style.fontSize
-  let fw = text_element.style.fontWeight
-  let fs_scale = 1
+  let tx = textElement.text
+  let ff = textElement.style.fontFamily
+  let fs = textElement.style.fontSize
+  let fw = textElement.style.fontWeight
+  let fsScale = 1
   
   ff = ff.toLowerCase()
   if ( !(ff in metrics) ) {
-    throw Error(describe_font(ff, fs, fw) + ": Unexpected font family")
+    throw Error(describeFont(ff, fs, fw) + ": Unexpected font family")
   }
 
   if ( !(fs in metrics[ff]) ) {
@@ -42,7 +42,7 @@ export function px_width(text_element) {
       if ((key == parseInt(key, 10)) && (key > largest)) largest = key
     }
     // Use a linear scale to calculate widths based on this known size.
-    fs_scale = (fs/largest)
+    fsScale = (fs/largest)
     fs = largest
   }
     
@@ -51,11 +51,11 @@ export function px_width(text_element) {
     fw = "regular"
   }
   if ( !(fw in metrics[ff][fs]) ) {
-    throw Error(describe_font(ff, fs, fw) + ": Unexpected font weight")
+    throw Error(describeFont(ff, fs, fw) + ": Unexpected font weight")
   }
 
   let txtWidth = 0
-  let default_kern = metrics[ff][fs][fw]['default_kern']
+  let defaultKern = metrics[ff][fs][fw]['defaultKern']
   for (var idx=0; idx<tx.length; idx++) {
     let ch = tx[idx]
     let chWidth = 0
@@ -69,8 +69,8 @@ export function px_width(text_element) {
     } else {
       chWidth = metrics[ff][fs][fw][ch]
     }
-    txtWidth += (chWidth + default_kern) * fs_scale
+    txtWidth += (chWidth + defaultKern) * fsScale
   }
-  if (txtWidth > default_kern) txtWidth -= (default_kern * fs_scale)
+  if (txtWidth > defaultKern) txtWidth -= (defaultKern * fsScale)
   return txtWidth
 }

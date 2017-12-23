@@ -1,6 +1,6 @@
 import document from "document"
 import { display } from "display"
-import * as fm from "./font_metrics"
+import { pxWidth } from "./font_metrics"
 
 const CHAR_SET = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
 
@@ -41,7 +41,7 @@ var cycleChar = '!';
 lblSubject.innerText = ":)"
 
 let px = 0
-try { px = fm.px_width(lblSubject) }
+try { px = pxWidth(lblSubject) }
 catch (exc) { console.error(exc) }
 lblWidth.innerText = px
 
@@ -55,7 +55,7 @@ document.onkeypress = function(evt) {
     lblSubject.innerText = cycleChar;
   }
   let px = 0
-  try { px = fm.px_width(lblSubject) }
+  try { px = pxWidth(lblSubject) }
   catch (exc) { console.error(exc) }
   lblWidth.innerText = px
 }
@@ -63,7 +63,7 @@ document.onkeypress = function(evt) {
 imgRuler.onclick = function(e) {
   lblSubject.innerText = randStr(2)
   let px = 0
-  try { px = fm.px_width(lblSubject) }
+  try { px = pxWidth(lblSubject) }
   catch (exc) { console.error(exc) }
   lblWidth.innerText = px
 }

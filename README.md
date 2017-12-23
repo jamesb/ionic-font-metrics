@@ -10,14 +10,14 @@ clock face.
 
 To use this module, copy the app/font-metrics.js file into your project. Then:
 ```javascript
-import { px_width } from "./font_metrics"
+import { pxWidth } from "./font_metrics"
 
-let words = get_some_text_whose_size_is_unknown() 
+let words = getSomeTextWhoseSizeIsUnknown() 
 let lblWords = document.getElementById("lblWords")
 lblWords.text = words
 
 try {
-  let width = px_width(lblWords)
+  let width = pxWidth(lblWords)
 } 
 catch (exc) {
   console.error(exc)
